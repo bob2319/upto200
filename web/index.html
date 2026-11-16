@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upto200 — Online Image Optimizer &amp; Compressor</title>
+  <meta name="description" content="Compress and optimize images online for faster websites. Reduce JPG, PNG, WebP, and HEIC file size, convert to WebP, set a custom KB target, and download files or a ZIP — free, no signup.">
+  <meta name="robots" content="__SEO_ROBOTS__">
+  <link rel="canonical" href="__SEO_CANONICAL__">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Upto200">
+  <meta property="og:title" content="Upto200 — Online Image Optimizer &amp; Compressor">
+  <meta property="og:description" content="Compress images online, convert to WebP, and optimize files for the web with a configurable size target. Batch processing and ZIP download included.">
+  <meta property="og:url" content="__SEO_OG_URL__">
+  <meta property="og:image" content="__SEO_OG_IMAGE__">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Upto200 — Online Image Optimizer &amp; Compressor">
+  <meta name="twitter:description" content="Compress images online, convert to WebP, and optimize files for the web with a configurable size target.">
+  <meta name="twitter:image" content="__SEO_OG_IMAGE__">
+
+  <meta name="theme-color" content="#0f7a65">
+  <meta name="application-name" content="Upto200">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/css/main.css" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  __SEO_JSON_LD__
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <a class="header__brand" href="/" aria-label="Upto200 home">
+        <span class="header__mark" aria-hidden="true"></span>
+        <span class="header__name">Upto200</span>
+      </a>
+      <nav class="header__nav" aria-label="Primary">
+        <a class="header__link" href="#optimizer">Optimizer</a>
+        <a class="header__link" href="#how">How it works</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero__content">
+          <p class="hero__brand">Upto200</p>
+          <h1 class="hero__title">Online image optimizer for faster websites</h1>
+          <p class="hero__text">Compress images online, reduce file size for the web, and convert to WebP, JPEG, or PNG. Set a target like 150&nbsp;KB or 200&nbsp;KB — the engine searches quality until the file fits, or reports when it cannot.</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#optimizer">Optimize images</a>
+            <a class="button button--ghost" href="#how">See how it works</a>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__panel">
+            <div class="hero__stat">
+              <span class="hero__stat-label">Target</span>
+              <span class="hero__stat-value">150 KB</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-label">Output</span>
+              <span class="hero__stat-value">WebP</span>
+            </div>
+            <div class="hero__wave"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="optimizer" id="optimizer">
+        <div class="optimizer__intro">
+          <h2 class="section-title">Image compressor</h2>
+          <p class="section-text">Upload one image or a batch. Choose a size target, max width, and output format, then preview the result and download files individually or as a ZIP.</p>
+        </div>
+
+        <div class="optimizer__layout">
+          <div class="optimizer__main">
+            <div
+              class="dropzone"
+              id="dropzone"
+              tabindex="0"
+              role="button"
+              aria-label="Upload images by clicking or dragging files here"
+            >
+              <input
+                class="dropzone__input"
+                id="file-input"
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp,.heic,.heif,image/jpeg,image/png,image/webp,image/heic,image/heif"
+                multiple
+                hidden
+              >
+              <div class="dropzone__icon" aria-hidden="true"></div>
+              <p class="dropzone__title">Drop images here</p>
+              <p class="dropzone__text">JPG, PNG, WebP, HEIC · up to 15&nbsp;MB each</p>
+              <span class="dropzone__cta">Browse files</span>
+              <div class="dropzone__progress" id="upload-progress" hidden>
+                <div class="dropzone__progress-bar" id="upload-progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="queue" id="queue" hidden>
+              <div class="queue__toolbar">
+                <h3 class="queue__title">Selected files <span class="queue__count" id="queue-count">0</span></h3>
+                <button class="button button--text" type="button" id="clear-all">Clear all</button>
+              </div>
+              <ul class="queue__list" id="queue-list"></ul>
+            </div>
+          </div>
+
+          <aside class="settings" aria-labelledby="settings-title">
+            <h3 class="settings__title" id="settings-title">Settings</h3>
+
+            <label class="field">
+              <span class="field__label">Target size (KB)</span>
+              <input class="field__input" id="target-size" type="number" min="1" max="10000" value="150">
+            </label>
+
+            <label class="field">
+              <span class="field__label">Maximum width (px)</span>
+              <input class="field__input" id="max-width" type="number" min="16" max="10000" value="1920">
+            </label>
+
+            <label class="field">
+              <span class="field__label">Output format</span>
+              <select class="field__input" id="output-format">
+                <option value="webp" selected>WebP</option>
+                <option value="jpeg">JPEG</option>
+                <option value="png">PNG</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Starting quality</span>
+              <input class="field__input" id="start-quality" type="number" min="1" max="100" value="90">
+            </label>
+
+            <label class="field">
+              <span class="field__label">Minimum quality</span>
+              <input class="field__input" id="min-quality" type="number" min="1" max="100" value="40">
+            </label>
+
+            <p class="settings__note" id="transparency-note">
+              Transparency is preserved for WebP and PNG output. JPEG flattens transparency onto white.
+            </p>
+
+            <button class="button button--primary button--block" type="button" id="optimize-btn" disabled>
+              Optimize images
+            </button>
+            <p class="settings__error" id="settings-error" hidden></p>
+          </aside>
+        </div>
+
+        <div class="processing" id="processing" hidden aria-live="polite" aria-busy="false">
+          <div class="processing__panel">
+            <div class="processing__visual" aria-hidden="true">
+              <span class="processing__orbit"></span>
+              <span class="processing__orbit processing__orbit--delay"></span>
+              <span class="processing__core"></span>
+            </div>
+            <div class="processing__copy">
+              <p class="processing__title" id="processing-title">Optimizing images…</p>
+              <p class="processing__detail" id="processing-detail"></p>
+              <p class="processing__percent" id="processing-percent" aria-hidden="false">0%</p>
+            </div>
+            <div
+              class="processing__track processing__track--determinate"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              id="processing-track"
+            >
+              <span class="processing__bar processing__bar--determinate" id="processing-bar"></span>
+            </div>
+            <ul class="processing__files" id="processing-files"></ul>
+          </div>
+        </div>
+
+        <section class="results" id="results" hidden aria-live="polite">
+          <div class="results__toolbar">
+            <div class="results__heading">
+              <h2 class="section-title">Results</h2>
+              <p class="results__summary" id="results-summary"></p>
+            </div>
+            <div class="results__actions">
+              <button
+                class="button button--primary results__zip"
+                type="button"
+                id="download-zip"
+                disabled
+              >
+                Download all (.ZIP)
+              </button>
+              <button class="button button--ghost" type="button" id="process-more">Process more images</button>
+            </div>
+          </div>
+          <p class="results__zip-error" id="zip-error" hidden></p>
+          <div class="results__list" id="results-list"></div>
+        </section>
+      </section>
+
+      <section class="how" id="how">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-text how__lead">Upto200 is a free online image optimizer built for web performance: smaller assets, clearer controls, and honest results when a target cannot be reached.</p>
+        <ol class="how__list">
+          <li class="how__item">
+            <span class="how__step">1</span>
+            <div>
+              <h3 class="how__title">Upload</h3>
+              <p class="how__text">Add JPG, PNG, WebP, or HEIC files — one image or a full batch. Invalid files are reported without stopping the rest of the queue.</p>
+            </div>
+          </li>
+          <li class="how__item">
+            <span class="how__step">2</span>
+            <div>
+              <h3 class="how__title">Choose target &amp; format</h3>
+              <p class="how__text">Set a KB budget (for example 100, 150, or 200), limit max width, pick WebP/JPEG/PNG, and adjust quality bounds. Already-small images may not shrink further.</p>
+            </div>
+          </li>
+          <li class="how__item">
+            <span class="how__step">3</span>
+            <div>
+              <h3 class="how__title">Preview &amp; download</h3>
+              <p class="how__text">Compare original and optimized previews, check reduction stats, then download files individually or as a ZIP archive.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__brand">Upto200</p>
+      <p class="footer__text">Online image compressor for websites. Optimize images, convert to WebP, and reduce file size with a configurable target. Temporary files are deleted automatically.</p>
+      <nav class="footer__nav" aria-label="Footer">
+        <a class="footer__link" href="#optimizer">Optimizer</a>
+        <a class="footer__link" href="#how">How it works</a>
+        <a class="footer__link" href="/sitemap.xml">Sitemap</a>
+      </nav>
+    </footer>
+  </div>
+
+  <template id="queue-item-template">
+    <li class="queue-item">
+      <div class="queue-item__preview-wrap">
+        <img class="queue-item__preview" alt="" width="64" height="64" hidden>
+        <span class="queue-item__placeholder" hidden>Preview unavailable</span>
+      </div>
+      <div class="queue-item__meta">
+        <p class="queue-item__name"></p>
+        <p class="queue-item__info"></p>
+      </div>
+      <button class="queue-item__remove" type="button" aria-label="Remove file">Remove</button>
+    </li>
+  </template>
+
+  <template id="result-item-template">
+    <article class="result-card">
+      <div class="result-card__header">
+        <h3 class="result-card__name"></h3>
+        <span class="result-card__badge"></span>
+      </div>
+      <div class="result-card__compare">
+        <figure class="result-card__figure">
+          <img class="result-card__image result-card__image--original" alt="Original preview" width="480" height="320" hidden>
+          <span class="result-card__placeholder result-card__placeholder--original" hidden>Preview unavailable</span>
+          <figcaption class="result-card__caption">Original</figcaption>
+        </figure>
+        <figure class="result-card__figure">
+          <img class="result-card__image result-card__image--optimized" alt="Optimized preview" width="480" height="320">
+          <figcaption class="result-card__caption">Optimized</figcaption>
+        </figure>
+      </div>
+      <dl class="result-card__stats">
+        <div class="result-card__stat">
+          <dt>Original size</dt>
+          <dd class="result-card__original-size"></dd>
+        </div>
+        <div class="result-card__stat">
+          <dt>Optimized size</dt>
+          <dd class="result-card__optimized-size"></dd>
+        </div>
+        <div class="result-card__stat">
+          <dt>Reduction</dt>
+          <dd class="result-card__reduction"></dd>
+        </div>
+        <div class="result-card__stat">
+          <dt>Dimensions</dt>
+          <dd class="result-card__dimensions"></dd>
+        </div>
+        <div class="result-card__stat">
+          <dt>Quality used</dt>
+          <dd class="result-card__quality"></dd>
+        </div>
+        <div class="result-card__stat">
+          <dt>Target reached</dt>
+          <dd class="result-card__target"></dd>
+        </div>
+      </dl>
+      <a class="button button--secondary result-card__download" href="#" download>Download</a>
+      <p class="result-card__error" hidden></p>
+    </article>
+  </template>
+
+  <script src="/js/app.js" type="module"></script>
+</body>
+</html>
